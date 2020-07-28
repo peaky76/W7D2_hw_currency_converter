@@ -1,42 +1,64 @@
 body,
 .currency-dropdown,
 .number-select {
-  background-color: #ba1200;
-  color: #fbfbff;
-  font-family: "Sora", sans-serif;
+  background-color: #731963;
+  color: #f0e100;
+  font-family: "Mulish", sans-serif;
   font-size: 48px;
 }
 
 body {
+  text-align: center;
 }
 
 #app {
   display: flex;
+  justify-content: space-evenly;
 }
 
 h1 {
   font-size: 64px;
-  color: #c8963e;
   text-transform: uppercase;
 }
 
-fieldset {
-  width: 9em;
-  margin-right: 1em;
+form {
+  display: flex;
+  align-items: center;
+  border: 5px ridge #f0e100;
+  background-color: #cbd2d0;
+  color: #0b3c49;
+  padding: 0.5em;
+}
+
+.label {
+  margin-bottom: 0.5em;
 }
 
 .currency-dropdown,
 .number-select {
   border: none;
+  background-color: #cbd2d0;
+  color: #0b3c49;
+}
+
+.flag {
+  width: 2em;
+  margin-right: 0.25em;
 }
 
 .currency-dropdown,
+.number-select,
+.output-units {
+  width: 4em;
+}
+
 .number-select {
-  width: 3em;
+  padding: 0;
 }
 
 .output-units {
-  width: 5em;
+  display: inline-block;
+  text-align: left;
 }
 
 .currency-dropdown:focus,
@@ -52,4 +74,5 @@ input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+  padding: 0;
 }

@@ -5,14 +5,32 @@ document.addEventListener("DOMContentLoaded", () => {
     el: "#app",
     data: {
       exchange: [],
+      countries: [],
       inputUnits: 1,
-      inputRate: 1,
-      outputRate: 1,
+      inputCountry: { currency: "EUR", rate: 1.0 },
+      outputCountry: { currency: "EUR", rate: 1.0 },
+      euFlag:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Flag_of_Europe.svg/1599px-Flag_of_Europe.svg.png",
     },
     computed: {
       outputUnits() {
-        return this.convert(this.inputUnits, this.outputRate / this.inputRate);
+        return this.convert(
+          this.inputUnits,
+          this.outputCountry.rate / this.inputCountry.rate
+        );
       },
+      inputFlag() {
+        return this.getFlag(this.inputCountry.currency);
+      },
+      outputFlag() {
+        return this.getFlag(this.outputCountry.currency);
+      },
+      // inputFlag() {
+      //   return this.getFlag(this.inputCountry.currency);
+      // },
+      // outputFlag() {
+      //   return this.getFlag(this.outputCountry.currency);
+      // },
     },
     filters: {
       currencyFormatter(value) {
@@ -21,6 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     mounted() {
       this.fetchRates();
+      this.fetchCountries();
     },
     methods: {
       fetchRates() {
@@ -34,8 +53,29 @@ document.addEventListener("DOMContentLoaded", () => {
             );
           });
       },
+      fetchCountries() {
+        fetch("https://restcountries.eu/rest/v2/all")
+          .then((response) => response.json())
+          .then((data) => {
+            this.countries = data.map((country) =>
+              Object({
+                currency: country.currencies[0].code,
+                flag: country.flag,
+              })
+            );
+          });
+      },
       convert(units, rate) {
         return units * rate;
+      },
+      getFlag(currencyCode) {
+        if (currencyCode === "EUR") {
+          return this.euFlag;
+        } else {
+          return this.countries.find(
+            (country) => country.currency === currencyCode
+          ).flag;
+        }
       },
     },
   });

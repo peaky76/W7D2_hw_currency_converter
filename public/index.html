@@ -4,36 +4,43 @@
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>Currency Converter</title>
-      <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@500&display=swap" rel="stylesheet">
       <link rel="stylesheet" href="./css/style.css" />
       <script src="./js/bundle.js"></script>
    </head>
    <body>
       <h1>Bureau du Change</h1>
       <div id="app">
-         <fieldset>
-            <legend>For:</legend>
-            <select class="currency-dropdown" v-model="inputRate">
-               <option v-for="ex in exchange" :value="ex.rate">
-                  {{ ex.currency }}
-               </option>
-            </select>
-            <input class="number-select" type="number" v-model.number="inputUnits">
-            </input>
-         </fieldset>
 
-         <fieldset>
-            <legend>You get:</legend>
-
-            <select class="currency-dropdown" v-model="outputRate">
-               <option v-for="ex in exchange" :value="ex.rate">
-                  {{ ex.currency }}
-               </option>
-            </select>
-            <span class="output-units">
-               {{ outputUnits | currencyFormatter }}
+         <section>
+            <div class="label">For</div>
+            <form>
+               <img class="flag" :src="inputFlag" />
+               <select class="currency-dropdown" v-model="inputCountry">
+                  <option v-for="ex in exchange" :value="ex">
+                     {{ ex.currency }}
+                  </option>
+               </select>
+               <input class="number-select" type="number" v-model="inputUnits">
+               </input>
+            </form>
+         </section>
+         
+         <section>
+            <div class="label">You get</div>
+            <form>
+               <img class="flag" :src="outputFlag" />
+               <select class="currency-dropdown" v-model="outputCountry">
+                  <option v-for="ex in exchange" :value="ex">
+                     {{ ex.currency }}
+                  </option>
+               </select>
+               <span class="output-units">
+                  {{ outputUnits | currencyFormatter }}
                </span>
-         </fieldset>
+            </form>
+         </section>
+
       </div>
    </body>
 </html>
