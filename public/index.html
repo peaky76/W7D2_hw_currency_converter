@@ -1,29 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Currency Converter</title>
-    <link rel="stylesheet" href="./css/style.css" />
-    <script src="./js/bundle.js"></script>
-  </head>
-  <body>
-    <div id="app">
-      <p v-if="exchange">
-         <input type="number" v-model.number="inputUnits">
-         </input>
-         <select v-model="inputRate">
-            <option v-for="ex in exchange" :value="ex.rate">
-              {{ ex.currency }}
-            </option>
-         </select>
-         = {{ outputUnits | currencyFormatter }}
-        <select v-model="outputRate">
-          <option v-for="ex in exchange" :value="ex.rate">
-            {{ ex.currency }}
-          </option>
-        </select>
-      </p>
-    </div>
-  </body>
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Currency Converter</title>
+      <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="./css/style.css" />
+      <script src="./js/bundle.js"></script>
+   </head>
+   <body>
+      <h1>Bureau du Change</h1>
+      <div id="app">
+         <fieldset>
+            <legend>For:</legend>
+            <select class="currency-dropdown" v-model="inputRate">
+               <option v-for="ex in exchange" :value="ex.rate">
+                  {{ ex.currency }}
+               </option>
+            </select>
+            <input class="number-select" type="number" v-model.number="inputUnits">
+            </input>
+         </fieldset>
+
+         <fieldset>
+            <legend>You get:</legend>
+
+            <select class="currency-dropdown" v-model="outputRate">
+               <option v-for="ex in exchange" :value="ex.rate">
+                  {{ ex.currency }}
+               </option>
+            </select>
+            <span class="output-units">
+               {{ outputUnits | currencyFormatter }}
+               </span>
+         </fieldset>
+      </div>
+   </body>
 </html>

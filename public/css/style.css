@@ -1,0 +1,55 @@
+body,
+.currency-dropdown,
+.number-select {
+  background-color: #ba1200;
+  color: #fbfbff;
+  font-family: "Sora", sans-serif;
+  font-size: 48px;
+}
+
+body {
+}
+
+#app {
+  display: flex;
+}
+
+h1 {
+  font-size: 64px;
+  color: #c8963e;
+  text-transform: uppercase;
+}
+
+fieldset {
+  width: 9em;
+  margin-right: 1em;
+}
+
+.currency-dropdown,
+.number-select {
+  border: none;
+}
+
+.currency-dropdown,
+.number-select {
+  width: 3em;
+}
+
+.output-units {
+  width: 5em;
+}
+
+.currency-dropdown:focus,
+.number-select:focus {
+  outline: none;
+}
+
+option {
+  font-size: 32px;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
