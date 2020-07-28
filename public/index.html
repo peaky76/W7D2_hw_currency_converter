@@ -8,6 +8,15 @@
     <script src="./js/bundle.js"></script>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <p v-if="rates">
+        <input type="number" :name="unitsToConvert" /> Euros =
+        <select>
+          <option v-for="(rate, currency) in rates" value="currency">
+            {{ currency }}
+          </option>
+        </select>
+      </p>
+    </div>
   </body>
 </html>

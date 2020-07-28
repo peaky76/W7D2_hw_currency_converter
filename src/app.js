@@ -3,9 +3,20 @@ import Vue from "vue";
 document.addEventListener("DOMContentLoaded", () => {
   new Vue({
     el: "#app",
-    data: {},
+    data: {
+      rates: [],
+      unitsToConvert: 0,
+    },
     computed: {},
-    mounted: {},
-    methods: {},
+    mounted() {
+      this.fetchRates();
+    },
+    methods: {
+      fetchRates() {
+        fetch("https://api.exchangeratesapi.io/latest")
+          .then((response) => response.json())
+          .then((data) => (this.rates = data.rates));
+      },
+    },
   });
 });

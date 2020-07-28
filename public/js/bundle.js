@@ -150,7 +150,7 @@ eval("var g;\n\n// This works in non-strict mode\ng = (function() {\n\treturn th
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.esm.js\");\n\n\ndocument.addEventListener(\"DOMContentLoaded\", () => {\n  new vue__WEBPACK_IMPORTED_MODULE_0__[\"default\"]({\n    el: \"#app\",\n    data: {},\n    computed: {},\n    mounted: {},\n    methods: {},\n  });\n});\n\n\n//# sourceURL=webpack:///./src/app.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.esm.js\");\n\n\ndocument.addEventListener(\"DOMContentLoaded\", () => {\n  new vue__WEBPACK_IMPORTED_MODULE_0__[\"default\"]({\n    el: \"#app\",\n    data: {\n      rates: [],\n      unitsToConvert: 0,\n    },\n    computed: {},\n    mounted() {\n      this.fetchRates();\n    },\n    methods: {\n      fetchRates() {\n        fetch(\"https://api.exchangeratesapi.io/latest\")\n          .then((response) => response.json())\n          .then((data) => (this.rates = data.rates));\n      },\n    },\n  });\n});\n\n\n//# sourceURL=webpack:///./src/app.js?");
 
 /***/ })
 
