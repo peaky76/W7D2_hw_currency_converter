@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   new Vue({
     el: "#app",
     data: {
-      rates: {},
+      exchange: [],
       inputUnits: 1,
       inputRate: 1,
       outputRate: 1,
@@ -26,7 +26,13 @@ document.addEventListener("DOMContentLoaded", () => {
       fetchRates() {
         fetch("https://api.exchangeratesapi.io/latest")
           .then((response) => response.json())
-          .then((data) => (this.rates = data.rates));
+          .then((data) => {
+            this.exchange = [{ currency: "EUR", rate: 1.0 }].concat(
+              Object.keys(data.rates)
+                .sort()
+                .map((key) => Object({ currency: key, rate: data.rates[key] }))
+            );
+          });
       },
       convert(units, rate) {
         return units * rate;

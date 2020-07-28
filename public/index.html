@@ -9,18 +9,18 @@
   </head>
   <body>
     <div id="app">
-      <p v-if="rates">
+      <p v-if="exchange">
          <input type="number" v-model.number="inputUnits">
          </input>
          <select v-model="inputRate">
-            <option v-for="(rate, currency) in rates" :value="rate">
-              {{ currency }}
+            <option v-for="ex in exchange" :value="ex.rate">
+              {{ ex.currency }}
             </option>
          </select>
          = {{ outputUnits | currencyFormatter }}
         <select v-model="outputRate">
-          <option v-for="(rate, currency) in rates" :value="rate">
-            {{ currency }}
+          <option v-for="ex in exchange" :value="ex.rate">
+            {{ ex.currency }}
           </option>
         </select>
       </p>
