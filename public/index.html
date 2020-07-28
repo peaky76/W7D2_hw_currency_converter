@@ -10,13 +10,15 @@
   <body>
     <div id="app">
       <p v-if="rates">
-        <input
-          type="number"
-          v-model="unitsToConvert"
-          :value="unitsToConvert | currencyFormatter"
-        />
-        Euros = {{ unitsNewCurrency | currencyFormatter }}
-        <select v-model="conversionRate">
+         <input type="number" v-model.number="inputUnits">
+         </input>
+         <select v-model="inputRate">
+            <option v-for="(rate, currency) in rates" :value="rate">
+              {{ currency }}
+            </option>
+         </select>
+         = {{ outputUnits | currencyFormatter }}
+        <select v-model="outputRate">
           <option v-for="(rate, currency) in rates" :value="rate">
             {{ currency }}
           </option>

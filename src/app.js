@@ -4,14 +4,14 @@ document.addEventListener("DOMContentLoaded", () => {
   new Vue({
     el: "#app",
     data: {
-      rates: [],
-      unitsToConvert: 1,
-      // selectedCurrency: null,
-      conversionRate: 1,
+      rates: {},
+      inputUnits: 1,
+      inputRate: 1,
+      outputRate: 1,
     },
     computed: {
-      unitsNewCurrency() {
-        return this.convert(this.unitsToConvert, this.conversionRate);
+      outputUnits() {
+        return this.convert(this.inputUnits, this.outputRate / this.inputRate);
       },
     },
     filters: {
@@ -28,8 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
           .then((response) => response.json())
           .then((data) => (this.rates = data.rates));
       },
-      convert(baseUnits, rate) {
-        return baseUnits * rate;
+      convert(units, rate) {
+        return units * rate;
       },
     },
   });
