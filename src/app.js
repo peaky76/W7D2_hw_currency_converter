@@ -57,12 +57,20 @@ document.addEventListener("DOMContentLoaded", () => {
         fetch("https://restcountries.eu/rest/v2/all")
           .then((response) => response.json())
           .then((data) => {
-            this.countries = data.map((country) =>
-              Object({
-                currency: country.currencies[0].code,
-                flag: country.flag,
-              })
-            );
+            this.countries = data
+              .filter((country) => country.population > 1500000)
+              .filter(
+                (country) =>
+                  !["Puerto Rico", "Ecuador", "El Salvador"].includes(
+                    country.name
+                  )
+              )
+              .map((country) =>
+                Object({
+                  currency: country.currencies[0].code,
+                  flag: country.flag,
+                })
+              );
           });
       },
       convert(units, rate) {
