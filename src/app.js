@@ -58,7 +58,11 @@ document.addEventListener("DOMContentLoaded", () => {
           .then((response) => response.json())
           .then((data) => {
             this.countries = data
-              .filter((country) => country.population > 1500000)
+              .filter(
+                (country) =>
+                  country.population > 1500000 ||
+                  ["Iceland", "Singapore"].includes(country.name)
+              )
               .filter(
                 (country) =>
                   !["Puerto Rico", "Ecuador", "El Salvador"].includes(
